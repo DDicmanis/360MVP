@@ -197,9 +197,12 @@ $(document).on("click", "#showcaseLink", function () {
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
+  $("#demoButton").addClass("d-none")
+  $("#iframe360").addClass("d-none")
+
 })
 
-$(document).on("click", "#contactsLink", function () {
+$(document).on("click", "#demoLink", function () {
   camera.position.set(6.994, 2.501, -0.582);
   camera.lookAt(0, 2.501, -0.5)
   $("#overlay").addClass("d-none")
@@ -210,9 +213,15 @@ $(document).on("click", "#demoLink", function () {
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
-
+  $("#demoButton").removeClass("d-none")
+  $("#iframe360").removeClass("d-none")
 })
-$(document).on("click", "#contactUsButton", function () {
-  $("#contactPopUp").removeClass("d-none")
-  $("#contactPopUp").css('bottom', '0%')
+
+$(document).on("click", "#demoBigButton", function () {
+  $("#iframe360").addClass("css--iframe-big")
+  $("#demoButtonClose").removeClass("d-none")
+})
+$(document).on("click", "#demoBigButtonClose", function () {
+  $("#iframe360").removeClass("css--iframe-big")
+  $("#demoButtonClose").addClass("d-none")
 })
