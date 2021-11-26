@@ -15,10 +15,10 @@ function init() {
   clock = new THREE.Clock();
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x340023);
+  scene.background = new THREE.Color(0xFFFFFF);
 
-  // const light = new THREE.HemisphereLight(0xbbbbff, 0x444422);
-  // light.position.set(0, 1, 0);
+  // const light = new THREE.HemisphereLight(0xFFFFFF, 0xFFFFFF);
+  // light.position.set(0, 10, 0);
   // scene.add(light);
 
   // model
@@ -29,20 +29,101 @@ function init() {
 
     sofa = model.getObjectByName("sofa")
     sofa.position.y = (0)
-    sofa.material.wireframe = true
-    rightArm = model.getObjectByName('mixamorigRightArm');
+    sofa.castShadow = true;
+    sofa.receiveShadow = false;
+    //sofa.material.color = THREE.Color(255, 255, 255)
+    var geo = new THREE.EdgesGeometry(sofa.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    sofa.add(wireframe);
     table = model.getObjectByName("table")
     table.position.y = (0);
-    table.material.wireframe = true
-    scene.add(model);
+    //table.material.wireframe = true
+    var geo = new THREE.EdgesGeometry(table.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    table.add(wireframe);
+
     console.log(model)
-    for (let i = 0; i <= 9; i++) {
-      var child = model.children[i]
-      console.log(child)
-      child.material.wireframe = true
-    }
+    wall1 = model.getObjectByName("Plane_1")
+    //wall1.material.wireframe = true
+    var geo = new THREE.EdgesGeometry(wall1.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    wall1.add(wireframe);
+    wall2 = model.getObjectByName("Plane_2")
+    //wall2.material.wireframe = true
+    var geo = new THREE.EdgesGeometry(wall2.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    wall2.add(wireframe);
+    wall3 = model.getObjectByName("Plane_3")
+    //wall3.material.wireframe = true
+    var geo = new THREE.EdgesGeometry(wall3.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    wall3.add(wireframe);
+    circle = model.getObjectByName("Circle")
+    var geo = new THREE.EdgesGeometry(circle.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    circle.add(wireframe);
+
+    plane002 = model.getObjectByName("Plane002")
+    var geo = new THREE.EdgesGeometry(plane002.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    plane002.add(wireframe);
+
+    plane003 = model.getObjectByName("Plane003")
+    var geo = new THREE.EdgesGeometry(plane003.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    plane003.add(wireframe);
+
+    plane004 = model.getObjectByName("Plane004_3")
+    var geo = new THREE.EdgesGeometry(plane004.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    plane004.add(wireframe);
+
+    plane005 = model.getObjectByName("Plane005_1")
+    var geo = new THREE.EdgesGeometry(plane005.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    plane005.add(wireframe);
+
+    plane006 = model.getObjectByName("Plane006")
+    var geo = new THREE.EdgesGeometry(plane006.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    plane006.add(wireframe);
+
+    plane007 = model.getObjectByName("Plane007")
+    var geo = new THREE.EdgesGeometry(plane007.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    plane007.add(wireframe);
+
+    plane008 = model.getObjectByName("Plane008")
+    var geo = new THREE.EdgesGeometry(plane008.geometry); // or WireframeGeometry
+    var mat = new THREE.LineBasicMaterial({ color: 0x000000 });
+    var wireframe = new THREE.LineSegments(geo, mat);
+    plane008.add(wireframe);
+
+
+
+
+
+    scene.add(model);
 
   });
+  loader.load("assets/3d/plant.glb", function (gltf) {
+    const model = gltf.scene;
+    model.scale.set(0.16, 0.16, 0.16)
+    model.position.set(0.000, 0.810, -3.257)
+    scene.add(model);
+  })
   const video = document.getElementById('video');
   video.play();
   const videoTexture = new THREE.VideoTexture(video);
@@ -51,19 +132,25 @@ function init() {
   const videoScreen = new THREE.Mesh(screen, videoMaterial);
   videoScreen.position.set(0.01, 3.034, -3.852)
   scene.add(videoScreen);
-  const BlueLight = new THREE.DirectionalLight(0x1A2881, 1);
+  const BlueLight = new THREE.DirectionalLight(0xFFFFFF, 1);
   BlueLight.position.set(8.5, 3.6, -3.082)
+  BlueLight.castShadow = true;
+  BlueLight.shadowDarkness = 0.5;
   scene.add(BlueLight);
   const helperBlue = new THREE.DirectionalLightHelper(BlueLight, 5);
   //scene.add(helperBlue);
-  const RedLight = new THREE.DirectionalLight(0x862730, 1);
+  const RedLight = new THREE.DirectionalLight(0xFFFFFF, 1);
   RedLight.position.set(-2.88, 4.495, 7.5)
+  RedLight.castShadow = true;
+  RedLight.shadowDarkness = 0.5;
   const helperRed = new THREE.DirectionalLightHelper(RedLight, 5);
   //scene.add(helperRed);
   scene.add(RedLight);
-  const PinkLight = new THREE.DirectionalLight(0x976983, 1);
+  const PinkLight = new THREE.DirectionalLight(0xFFFFFF, 1);
   PinkLight.position.set(-3.273, 8.363, -3.358)
-  scene.add(PinkLight);
+  PinkLight.castShadow = true;
+  PinkLight.shadowDarkness = 0.5;
+  //scene.add(PinkLight);
   var Planemap = new THREE.TextureLoader().load('../../assets/images/texture.png')
   var mesh = new THREE.Mesh(
     new THREE.PlaneGeometry(3.64, 2.54),
@@ -77,6 +164,8 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.gammaOutput = true;
   renderer.gammaFactor = 2.2;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   scene.fog = new THREE.FogExp2(0xefd1b5, 0.001);
   document.body.append(renderer.domElement)
   //document.body.appendChild(cssRenderer.domElement);
