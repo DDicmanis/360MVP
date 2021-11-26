@@ -190,6 +190,9 @@ $(document).on("click", "#gotToShowcaseButton", function () {
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
   $("#iframe360").addClass("d-none")
+  $("#showcaseLink").addClass("active-nav")
+  $("#beginingLink").removeClass("active-nav")
+  $("#demoLink").removeClass("active-nav")
   // tween.start();
   // tween2.start();
   runTween(position2, lookat2);
@@ -202,6 +205,9 @@ $(document).on("click", "#showcaseLink", function () {
   $("#contactPopUp").addClass("d-none")
   $("#demoButton").addClass("d-none")
   $("#iframe360").addClass("d-none")
+  $("#showcaseLink").addClass("active-nav")
+  $("#beginingLink").removeClass("active-nav")
+  $("#demoLink").removeClass("active-nav")
   runTween(position2, lookat2);
 
 })
@@ -212,6 +218,9 @@ $(document).on("click", "#beginingLink", function () {
   $("#contactPopUp").addClass("d-none")
   $("#demoButton").addClass("d-none")
   $("#iframe360").addClass("d-none")
+  $("#showcaseLink").removeClass("active-nav")
+  $("#beginingLink").addClass("active-nav")
+  $("#demoLink").removeClass("active-nav")
   runTween(position1, lookat1)
   console.log(position1)
 
@@ -220,6 +229,9 @@ $(document).on("click", "#demoLink", function () {
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
+  $("#showcaseLink").removeClass("active-nav")
+  $("#beginingLink").removeClass("active-nav")
+  $("#demoLink").addClass("active-nav")
 
   //$("#iframe360").removeClass("d-none")
   runTween(position3, lookat3);
