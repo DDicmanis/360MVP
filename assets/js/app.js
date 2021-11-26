@@ -121,6 +121,7 @@ $(document).on("click", "#gotToShowcaseButton", function () {
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
+  $("#iframe360").addClass("d-none")
 })
 $(document).on("click", "#showcaseLink", function () {
   camera.position.set(0.136, 3.236, 7.096);
@@ -128,6 +129,9 @@ $(document).on("click", "#showcaseLink", function () {
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
+  $("#demoButton").addClass("d-none")
+  $("#iframe360").addClass("d-none")
+
 })
 
 $(document).on("click", "#demoLink", function () {
@@ -144,14 +148,22 @@ $(document).on("click", "#beginingLink", function () {
   $("#contactUsButton").removeClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
+  $("#demoButton").addClass("d-none")
+  $("#iframe360").addClass("d-none")
 })
 $(document).on("click", "#demoLink", function () {
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
-
+  $("#demoButton").removeClass("d-none")
+  $("#iframe360").removeClass("d-none")
 })
-$(document).on("click", "#contactUsButton", function () {
-  $("#contactPopUp").removeClass("d-none")
-  $("#contactPopUp").css('bottom', '0%')
+
+$(document).on("click", "#demoBigButton", function () {
+  $("#iframe360").addClass("css--iframe-big")
+  $("#demoButtonClose").removeClass("d-none")
+})
+$(document).on("click", "#demoBigButtonClose", function () {
+  $("#iframe360").removeClass("css--iframe-big")
+  $("#demoButtonClose").addClass("d-none")
 })
