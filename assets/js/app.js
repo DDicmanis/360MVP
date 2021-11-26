@@ -26,13 +26,21 @@ function init() {
   loader.load('assets/3d/Room.glb', function (gltf) {
 
     const model = gltf.scene;
+
     sofa = model.getObjectByName("sofa")
     sofa.position.y = (0)
+    sofa.material.wireframe = true
     rightArm = model.getObjectByName('mixamorigRightArm');
     table = model.getObjectByName("table")
     table.position.y = (0);
+    table.material.wireframe = true
     scene.add(model);
-
+    console.log(model)
+    for (let i = 0; i <= 9; i++) {
+      var child = model.children[i]
+      console.log(child)
+      child.material.wireframe = true
+    }
 
   });
   const video = document.getElementById('video');
@@ -58,11 +66,11 @@ function init() {
   scene.add(PinkLight);
   var Planemap = new THREE.TextureLoader().load('../../assets/images/texture.png')
   var mesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(1, 1, 1, 1),
+    new THREE.PlaneGeometry(3.64, 2.54),
     new THREE.MeshBasicMaterial({ map: Planemap })
   );
-  mesh.position.set(-3.812, 4.079, -0.978)
-  mesh.rotation.set(90, 0, -90)
+  mesh.position.set(-3.936, 2.746, -0.820)
+  mesh.lookAt(6.994, 2.601, -0.582)
   scene.add(mesh)
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
