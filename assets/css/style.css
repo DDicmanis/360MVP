@@ -1,17 +1,19 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
 .overlayDiv{
   top: 10vh;
   left: 10vw;
   position: absolute;
   width: 80vw;
   height: 80vh;
-  background-color: rgba(0,0,0, 0.8);
+  background-color: rgba(256,256,256, 0.8);
 }
 .headerContainer{
   width: 100vw;
   height: 10vh;
   position: absolute;
-
-  color: white;
+  color: black;
   display: flex;
   justify-content: space-between;
   padding: 0 2rem 0 2rem ;
@@ -22,8 +24,7 @@
   cursor: pointer;
 }
 .headerContainer ul>li:hover{
-  text-decoration: underline;
-  text-decoration-color: white ;
+  text-decoration-color: black ;
 }
 #css{
   pointer-events: none;
@@ -47,7 +48,7 @@
   width: 100vw;
   position: absolute;
   bottom: -8%;
-  color: white;
+  color: black;
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left:1rem;
@@ -64,10 +65,10 @@
 .kmText{
   transform: rotate(-180deg);
   writing-mode: vertical-lr;
-  color: white;
+  color: black;
 }
 .sidebarText{
-  color: white;
+  color: black;
   font-size: 1.5rem;
   opacity: 0;
   transition: all .3s cubic-bezier(1, 0, 0, 1);
@@ -100,12 +101,13 @@
 }
 .white-button{
   background-color: transparent;
-  border-color: white;
+  border-color: black;
+    color:black;
 }
 
 .white-button:hover{
   background-color:rgba(0, 0, 0, 0.45);
-  border-color: white;
+  border-color: black;
 }
 .overlayDiv {
     top: 10vh;
@@ -113,7 +115,7 @@
     position: absolute;
     width: 80vw;
     height: 80vh;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(256,256,256, 0.8);
 }
 
 .headerContainer {
@@ -121,7 +123,7 @@
     height: 10vh;
     position: absolute;
 
-    color: white;
+    color: black;
     display: flex;
     justify-content: space-between;
     padding: 0 2rem 0 2rem;
@@ -134,8 +136,7 @@
 }
 
 .headerContainer ul > li:hover {
-    text-decoration: underline;
-    text-decoration-color: #FFFFFF;
+    text-decoration-color: black;
 }
 
 #css {
@@ -161,7 +162,7 @@
     width: 100vw;
     position: absolute;
     bottom: -8%;
-    color: white;
+    color: black;
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 1rem;
@@ -199,4 +200,7 @@
     bottom: 0;
     top: 0;
     transform: scale(1);
+}
+.active-nav {
+    border-bottom: 3px solid black;
 }
