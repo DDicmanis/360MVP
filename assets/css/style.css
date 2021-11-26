@@ -11,7 +11,7 @@
   height: 10vh;
   position: absolute;
 
-  color: #ff0018;
+  color: white;
   display: flex;
   justify-content: space-between;
   padding: 0 2rem 0 2rem ;
@@ -23,7 +23,7 @@
 }
 .headerContainer ul>li:hover{
   text-decoration: underline;
-  text-decoration-color: #ff0018 ;
+  text-decoration-color: white ;
 }
 #css{
   pointer-events: none;
@@ -51,4 +51,59 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left:1rem;
+}
+.sidebarIcon{
+  width: 32px;
+}
+.sidebar{
+  position: absolute;
+  bottom: 5%;
+  left: 1%;
+
+}
+.kmText{
+  transform: rotate(-180deg);
+  writing-mode: vertical-lr;
+  color: white;
+}
+.sidebarText{
+  color: white;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: all .3s cubic-bezier(1, 0, 0, 1);
+}
+.sidebarIcon{
+  margin-right: 1rem;
+}
+#emailIcon:hover > span {
+  transform: translate(0,20%);
+  opacity: 1;
+}
+#phoneIcon:hover > span {
+  transform: translate(0,20%);
+  opacity: 1;
+}
+#instagramIcon:hover > span {
+  transform: translate(0,20%);
+  opacity: 1;
+}
+#websitelIcon:hover > span {
+  transform: translate(0,20%);
+  opacity: 1;
+}
+#kmLogo{
+  transform: rotate(90deg);
+  margin-top:2rem;
+}
+#copyrightText{
+  margin-left:1rem;
+}
+.white-button{
+  background-color: transparent;
+  border-color: white;
+}
+
+.white-button:hover{
+  background-color:rgba(0, 0, 0, 0.45);
+  border-color: white;
 }

@@ -3,77 +3,8 @@ let camera, scene, renderer, clock, rightArm;
 init();
 animate();
 
-function createCssRenderer() {
 
-  var cssRenderer = new THREE.CSS3DRenderer();
 
-  cssRenderer.setSize(window.innerWidth, window.innerHeight);
-
-  cssRenderer.domElement.style.position = 'absolute';
-  renderer.domElement.style.zIndex = 0;
-  cssRenderer.domElement.style.top = 0;
-
-  return cssRenderer;
-}
-function createPlane(w, h, position, rotation) {
-
-  var material = new THREE.MeshBasicMaterial({
-    color: 0x000000,
-    opacity: 0.0,
-    side: THREE.DoubleSide
-  });
-
-  var geometry = new THREE.PlaneGeometry(w, h);
-
-  var mesh = new THREE.Mesh(geometry, material);
-
-  mesh.position.x = position.x;
-  mesh.position.y = position.y;
-  mesh.position.z = position.z;
-
-  mesh.rotation.x = rotation.x;
-  mesh.rotation.y = rotation.y;
-  mesh.rotation.z = rotation.z;
-
-  return mesh;
-}
-function createCssObject(w, h, position, rotation, url) {
-
-  var html = [
-
-    '<div style="width:' + w + 'px; height:' + h + 'px;">',
-    '<iframe src="' + url + '" width="' + w + '" height="' + h + '">',
-    '</iframe>',
-    '</div>'
-
-  ].join('\n');
-
-  var div = document.createElement('div');
-
-  $(div).html(html);
-
-  var cssObject = new THREE.CSS3DObject(div);
-
-  cssObject.position.x = position.x;
-  cssObject.position.y = position.y;
-  cssObject.position.z = position.z;
-
-  cssObject.rotation.x = rotation.x;
-  cssObject.rotation.y = rotation.y;
-  cssObject.rotation.z = rotation.z;
-
-  return cssObject;
-}
-function create3dPage(w, h, position, rotation, url) {
-
-  var plane = createPlane(w, h, position, rotation);
-
-  scene.add(plane);
-
-  var cssObject = createCssObject(w, h, position, rotation, url);
-
-  cssScene.add(cssObject);
-}
 
 function init() {
 
@@ -84,7 +15,7 @@ function init() {
   clock = new THREE.Clock();
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xffffff);
+  scene.background = new THREE.Color(0x340023);
 
   // const light = new THREE.HemisphereLight(0xbbbbff, 0x444422);
   // light.position.set(0, 1, 0);
@@ -126,11 +57,11 @@ function init() {
   PinkLight.position.set(-3.273, 8.363, -3.358)
   scene.add(PinkLight);
   renderer = new THREE.WebGLRenderer({ antialias: true });
-  cssRenderer = createCssRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.gammaOutput = true;
   renderer.gammaFactor = 2.2;
+  scene.fog = new THREE.FogExp2(0xefd1b5, 0.001);
   document.body.append(renderer.domElement)
   //document.body.appendChild(cssRenderer.domElement);
   //cssRenderer.domElement.appendChild(renderer.domElement);
@@ -199,11 +130,19 @@ $(document).on("click", "#showcaseLink", function () {
   $("#contactPopUp").addClass("d-none")
 })
 
-$(document).on("click", "#contactsLink", function () {
+$(document).on("click", "#demoLink", function () {
   camera.position.set(6.994, 2.501, -0.582);
   camera.lookAt(0, 2.501, -0.5)
   $("#overlay").addClass("d-none")
   $("#contactUsButton").removeClass("d-none")
+  $("#contactPopUp").addClass("d-none")
+})
+$(document).on("click", "#beginingLink", function () {
+  camera.position.set(8, 3, 7);
+  camera.lookAt(-2, 1.6, -4);
+  $("#overlay").removeClass("d-none")
+  $("#contactUsButton").removeClass("d-none")
+  $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
 })
 $(document).on("click", "#demoLink", function () {
