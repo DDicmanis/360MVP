@@ -121,7 +121,7 @@
     height: 10vh;
     position: absolute;
 
-    color: #ff0018;
+    color: white;
     display: flex;
     justify-content: space-between;
     padding: 0 2rem 0 2rem;
@@ -135,7 +135,7 @@
 
 .headerContainer ul > li:hover {
     text-decoration: underline;
-    text-decoration-color: #ff0018;
+    text-decoration-color: #FFFFFF;
 }
 
 #css {

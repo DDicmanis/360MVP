@@ -56,6 +56,14 @@ function init() {
   const PinkLight = new THREE.DirectionalLight(0x976983, 1);
   PinkLight.position.set(-3.273, 8.363, -3.358)
   scene.add(PinkLight);
+  var Planemap = new THREE.TextureLoader().load('../../assets/images/texture.png')
+  var mesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(1, 1, 1, 1),
+    new THREE.MeshBasicMaterial({ map: Planemap })
+  );
+  mesh.position.set(-3.812, 4.079, -0.978)
+  mesh.rotation.set(90, 0, -90)
+  scene.add(mesh)
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -67,7 +75,6 @@ function init() {
   //cssRenderer.domElement.appendChild(renderer.domElement);
   //cssScene = new THREE.Scene();
   //create3dPage(1000, 1000, new THREE.Vector3(-1050, 0, 400), new THREE.Vector3(0, 45 * Math.PI / 180, 0), 'contacts.html');
-
 
   //document.body.appendChild(renderer.domElement);
   window.addEventListener('resize', onWindowResize, false);
@@ -99,6 +106,9 @@ function animate() {
   requestAnimationFrame(animate);
 
   const t = clock.getElapsedTime();
+  TWEEN.update();
+
+
   //console.log()
   // if (rightArm) {
 
@@ -115,48 +125,96 @@ function animate() {
 //   camera.position.set(showcasePosition);
 //   console.log(camera.getWorldPosition())
 // }
+
+var position1 = { x: 8.0, y: 3.0, z: 7.0 }
+
+var lookat1 = { x: -2, y: 1.6, z: -4 }
+var position2 = { x: 0.136, y: 3.236, z: 7.096 }
+var lookat2 = { x: 0.136, y: 3.236, z: -1 }
+var position3 = { x: 6.994, y: 2.501, z: -0.582 }
+var lookat3 = { x: 0, y: 2.501, z: -0.5 }
+var position = { x: 8.0, y: 3.0, z: 7.0 }
+var focusCords = lookat1;
+
+function runTween(targetLocation, targetFocus) {
+  //console.log("fired")
+  var tween = new TWEEN.Tween(position);
+  tween.to(targetLocation, 1000)
+  tween.onUpdate(function () {
+    console.log("running")
+    camera.position.x = position.x;
+    camera.position.y = position.y;
+    camera.position.z = position.z;
+  })
+  tween.onComplete(function () {
+    //position = targetLocation
+    //console.log(position)
+  });
+  var tween2 = new TWEEN.Tween(focusCords)
+  tween2.to(targetFocus, 1000)
+  tween2.onUpdate(function () {
+    //console.log("running")
+    camera.lookAt(focusCords.x, focusCords.y, focusCords.z);
+
+  });
+  tween2.onComplete(function () {
+    //console.log("running")
+    //focusCords = targetFocus
+    if (targetLocation == position3) {
+      $("#iframe360").removeClass("d-none")
+      $("#demoButton").removeClass("d-none")
+    }
+    if (targetLocation == position1) {
+      $("#overlay").removeClass("d-none")
+      $("#contactUsButton").removeClass("d-none")
+    }
+
+  });
+
+  tween.start();
+  tween2.start();
+}
+
 $(document).on("click", "#gotToShowcaseButton", function () {
-  camera.position.set(0.136, 3.236, 7.096);
-  camera.lookAt(0.136, 3.236, -1)
+  //camera.position.set(0.136, 3.236, 7.096);
+  //camera.lookAt(0.136, 3.236, -1)
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
   $("#iframe360").addClass("d-none")
+  // tween.start();
+  // tween2.start();
+  runTween(position2, lookat2);
 })
 $(document).on("click", "#showcaseLink", function () {
-  camera.position.set(0.136, 3.236, 7.096);
-  camera.lookAt(0.136, 3.236, -1)
+  // camera.position.set(0.136, 3.236, 7.096);
+  // camera.lookAt(0.136, 3.236, -1)
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
   $("#demoButton").addClass("d-none")
   $("#iframe360").addClass("d-none")
+  runTween(position2, lookat2);
 
 })
 
-$(document).on("click", "#demoLink", function () {
-  camera.position.set(6.994, 2.501, -0.582);
-  camera.lookAt(0, 2.501, -0.5)
-  $("#overlay").addClass("d-none")
-  $("#contactUsButton").removeClass("d-none")
-  $("#contactPopUp").addClass("d-none")
-})
 $(document).on("click", "#beginingLink", function () {
-  camera.position.set(8, 3, 7);
-  camera.lookAt(-2, 1.6, -4);
-  $("#overlay").removeClass("d-none")
-  $("#contactUsButton").removeClass("d-none")
+
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
   $("#demoButton").addClass("d-none")
   $("#iframe360").addClass("d-none")
+  runTween(position1, lookat1)
+  console.log(position1)
+
 })
 $(document).on("click", "#demoLink", function () {
   $("#overlay").addClass("d-none")
   $("#contactUsButton").addClass("d-none")
   $("#contactPopUp").addClass("d-none")
-  $("#demoButton").removeClass("d-none")
-  $("#iframe360").removeClass("d-none")
+
+  //$("#iframe360").removeClass("d-none")
+  runTween(position3, lookat3);
 })
 
 $(document).on("click", "#demoBigButton", function () {
@@ -167,3 +225,5 @@ $(document).on("click", "#demoBigButtonClose", function () {
   $("#iframe360").removeClass("css--iframe-big")
   $("#demoButtonClose").addClass("d-none")
 })
+
+
