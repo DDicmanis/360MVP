@@ -1,0 +1,54 @@
+.overlayDiv{
+  top: 10vh;
+  left: 10vw;
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  background-color: rgba(0,0,0, 0.8);
+}
+.headerContainer{
+  width: 100vw;
+  height: 10vh;
+  position: absolute;
+
+  color: #ff0018;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem 0 2rem ;
+  align-items: center;
+}
+.headerContainer ul>li{
+  padding-right: 1rem;
+  cursor: pointer;
+}
+.headerContainer ul>li:hover{
+  text-decoration: underline;
+  text-decoration-color: #ff0018 ;
+}
+#css{
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left:0;
+}
+
+.number .email {
+  font-size:60px;
+}
+
+#contactUsButton{
+  position: absolute;
+  top:65%;
+  left:49%;
+}
+#contactPopUp{
+  display: flex;
+  background-color: #1A2881;
+  width: 100vw;
+  position: absolute;
+  bottom: -8%;
+  color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left:1rem;
+}
